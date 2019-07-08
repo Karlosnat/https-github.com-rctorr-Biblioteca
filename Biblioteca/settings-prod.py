@@ -27,6 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["rctorr.pythonanywhere.com"]
 
+# Necesario para allauth
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +47,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalogo',
     'rest_framework',
+
+    # Necesario para allauth
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # Sólo queremos activar la validación de las siguientes
+    # redes sociales ...
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.linkedin_oauth2',
+    'allauth.socialaccount.providers.twitter',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +74,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Necesario para allauth
+SITE_ID = 1
 
 ROOT_URLCONF = 'Biblioteca.urls'
 
@@ -119,7 +147,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/home/rctorr/Biblioteca/static/"
 
 # Se define la URL para login
 LOGIN_URL = "/login/"
