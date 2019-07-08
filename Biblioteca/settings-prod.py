@@ -147,6 +147,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/rctorr/Biblioteca/static'
 
 # Se define la URL para login
 LOGIN_URL = "/login/"
+
+# Para allauth si el login es correcto se redirecciona a ...
+LOGIN_REDIRECT_URL = "/"
+
